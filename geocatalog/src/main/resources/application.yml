@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: geocatalog
+  datasource:
+    url: jdbc:postgresql://localhost:5432/basepointsdb
+    username: andrew
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: apdate
+    show-sql: true
