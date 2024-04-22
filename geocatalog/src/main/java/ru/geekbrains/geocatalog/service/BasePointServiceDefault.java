@@ -23,36 +23,36 @@ public class BasePointServiceDefault implements BasePointService{
     @EventListener(ContextRefreshedEvent.class)
     public void onCreatedDatabase() {
         basePointRepository.save(new BasePoint(
-                "Ранний",
-                5301079050L,
-                75899429790L,
-                216820,
+                "Утренний",
+                5501650050L,
+                75913715790L,
+                1123250,
                 "L-37-09",
                 "2кл",
                 "1942г"
                 ));
         basePointRepository.save(new BasePoint(
-                "Горная",
-                5297978400L,
-                7589821610L,
-                210780L,
+                "Равнинная",
+                5212365400L,
+                7575821450L,
+                1159780L,
                 "L-37-09",
                 "3кл",
                 "1942г"
         ));
         basePointRepository.save(new BasePoint(
-                "Шахта19",
-                5295754480L,
-                7586770570L,
-                149900L,
+                "Шахта98",
+                5232554480L,
+                7152770570L,
+                456900L,
                 "L-37-09",
                 "3кл",
                 "1942г"
         ));
         basePointRepository.save(new BasePoint(
-                "Шведов",
-                409210786L,
-                2195989526L,
+                "Лисицын",
+                4235210786L,
+                2145989526L,
                 17480L,
                 "L-37-32",
                 "4кл",
@@ -60,18 +60,18 @@ public class BasePointServiceDefault implements BasePointService{
         ));
         basePointRepository.save(new BasePoint(
                 "3102",
-                426751170L,
-                2216794713L,
-                81005L,
+                428461170L,
+                2248594713L,
+                48505L,
                 "1р",
                 "L-37-32",
                 "МСК-61-2"
         ));
         basePointRepository.save(new BasePoint(
                 "2901",
-                476238734L,
-                2244754037L,
-                78127L,
+                473688734L,
+                2244514037L,
+                71237L,
                 "L-37-32",
                 "2р",
                 "МСК-61-2"
