@@ -22,6 +22,7 @@ public class BasePointMapper {
         basePoint.setZ(basePointDto.getZ());
         basePoint.setSheet(basePointDto.getSheet());
         basePoint.setPointType(basePointDto.getPointType());
+        basePoint.setCoordinateSystem(basePointDto.getCoordinateSystem());
 
         return basePoint;
     }
@@ -35,12 +36,14 @@ public class BasePointMapper {
 
         BasePointDto basePointDto = new BasePointDto();
 
+        basePointDto.setId(basePoint.getId());
         basePointDto.setName(basePoint.getName());
         basePointDto.setX(basePoint.getX());
         basePointDto.setY(basePoint.getY());
         basePointDto.setZ(basePoint.getZ());
         basePointDto.setSheet(basePoint.getSheet());
         basePointDto.setPointType(basePoint.getPointType());
+        basePointDto.setCoordinateSystem(basePoint.getCoordinateSystem());
 
         return basePointDto;
     }

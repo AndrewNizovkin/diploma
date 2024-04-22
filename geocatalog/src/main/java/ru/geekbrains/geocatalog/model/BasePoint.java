@@ -50,5 +50,25 @@ public class BasePoint {
     @Column(name = "type")
     private String pointType;
 
+    /**
+     * The coordinate system
+     */
+    @Column(name = "coordinate_system")
+    private String coordinateSystem;
 
+    public BasePoint(String name,
+                     long x,
+                     long y,
+                     long z,
+                     String sheet,
+                     String pointType,
+                     String coordinateSystem) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.sheet = sheet;
+        this.pointType = pointType;
+        this.coordinateSystem = coordinateSystem;
+    }
 }

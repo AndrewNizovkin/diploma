@@ -1,5 +1,6 @@
 package ru.geekbrains.geocatalog.dto;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -36,5 +37,11 @@ public class BasePointDto {
      * The accuracy class of the point
      */
     private String pointType;
+
+    /**
+     * The coordinate system
+     */
+    private String coordinateSystem;
+
 
 }
