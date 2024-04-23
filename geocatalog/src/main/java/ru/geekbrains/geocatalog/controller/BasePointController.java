@@ -47,7 +47,7 @@ public class BasePointController {
      * @return BasePointDto instance
      */
     @GetMapping("name/{name}")
-    public ResponseEntity<BasePointDto> getBasePointByName(@PathVariable String name) {
+    public ResponseEntity<List<BasePointDto>> getBasePointByName(@PathVariable String name) {
         try {
             return ResponseEntity.ok().body(basePointService.getByName(name));
         } catch (NoSuchElementException e) {

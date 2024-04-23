@@ -26,7 +26,7 @@ public interface BasePointService {
      * @param name String name
      * @return BasePointDto
      */
-    BasePointDto getByName(String name);
+    List<BasePointDto> getByName(String name);
 
     /**
      * Adds new base point to database

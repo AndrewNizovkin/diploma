@@ -21,7 +21,7 @@ public class BasePointMapper {
         basePoint.setY(basePointDto.getY());
         basePoint.setZ(basePointDto.getZ());
         basePoint.setSheet(basePointDto.getSheet());
-        basePoint.setPointType(basePointDto.getPointType());
+        basePoint.setAccuracyClass(basePointDto.getAccuracyClass());
         basePoint.setCoordinateSystem(basePointDto.getCoordinateSystem());
 
         return basePoint;
@@ -42,7 +42,7 @@ public class BasePointMapper {
         basePointDto.setY(basePoint.getY());
         basePointDto.setZ(basePoint.getZ());
         basePointDto.setSheet(basePoint.getSheet());
-        basePointDto.setPointType(basePoint.getPointType());
+        basePointDto.setAccuracyClass(basePoint.getAccuracyClass());
         basePointDto.setCoordinateSystem(basePoint.getCoordinateSystem());
 
         return basePointDto;

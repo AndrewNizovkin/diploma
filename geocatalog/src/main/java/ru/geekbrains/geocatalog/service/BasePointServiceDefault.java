@@ -76,6 +76,15 @@ public class BasePointServiceDefault implements BasePointService{
                 "2р",
                 "МСК-61-2"
         ));
+        basePointRepository.save(new BasePoint(
+                "2901",
+                471238734L,
+                1244454037L,
+                1232456L,
+                "L-37-31",
+                "2р",
+                "МСК-61-1"
+        ));
 
     }
 
@@ -109,12 +118,14 @@ public class BasePointServiceDefault implements BasePointService{
      * @return BasePointDto
      */
     @Override
-    public BasePointDto getByName(String name) {
-        BasePoint basePoint = basePointRepository.findByName(name).orElse(null);
-        if (basePoint == null) {
+    public List<BasePointDto> getByName(String name) {
+        List<BasePoint> basePoints = basePointRepository.findAll()
+                .stream()
+                .filter(basePoint -> basePoint.getName().equals(name)).toList();
+        if (basePoints.isEmpty()) {
             throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "name = " + name);
         }
-        return BasePointMapper.toBasePointDto(basePoint);
+        return BasePointMapper.toListBasePointDto(basePoints);
     }
 
     /**
@@ -158,7 +169,7 @@ public class BasePointServiceDefault implements BasePointService{
         basePoint.setY(basePointDto.getY());
         basePoint.setZ(basePointDto.getZ());
         basePoint.setSheet(basePointDto.getSheet());
-        basePoint.setPointType(basePointDto.getPointType());
+        basePoint.setAccuracyClass(basePointDto.getAccuracyClass());
 
         return BasePointMapper.toBasePointDto(basePointRepository.saveAndFlush(basePoint));
     }

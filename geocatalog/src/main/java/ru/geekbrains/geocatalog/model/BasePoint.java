@@ -48,7 +48,7 @@ public class BasePoint {
      * The accuracy class of the point
      */
     @Column(name = "type")
-    private String pointType;
+    private String accuracyClass;
 
     /**
      * The coordinate system
@@ -68,7 +68,7 @@ public class BasePoint {
         this.y = y;
         this.z = z;
         this.sheet = sheet;
-        this.pointType = pointType;
+        this.accuracyClass = pointType;
         this.coordinateSystem = coordinateSystem;
     }
 }
