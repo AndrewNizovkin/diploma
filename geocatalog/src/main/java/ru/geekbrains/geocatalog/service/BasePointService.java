@@ -1,6 +1,7 @@
 package ru.geekbrains.geocatalog.service;
 
 import org.springframework.transaction.annotation.Transactional;
+import ru.geekbrains.geocatalog.dto.AreaDto;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.model.BasePoint;
 
@@ -22,11 +23,25 @@ public interface BasePointService {
     BasePointDto getById(long id);
 
     /**
-     * Gets base point by name
+     * Finds base points by name
      * @param name String name
-     * @return BasePointDto
+     * @return list of BasePointDto instance
      */
     List<BasePointDto> getByName(String name);
+
+    /**
+     * Finds base points by sheet
+     * @param sheet String name
+     * @return list of BasePointDto instance
+     */
+    List<BasePointDto> getBySheet(String sheet);
+
+    /**
+     * Gets list of base points inside the specified area
+     * @param areaDto AreaDto instance
+     * @return List of BasePointDto instance
+     */
+    List<BasePointDto> getByArea(AreaDto areaDto);
 
     /**
      * Adds new base point to database

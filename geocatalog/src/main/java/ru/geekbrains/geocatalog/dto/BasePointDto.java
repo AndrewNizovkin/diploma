@@ -28,7 +28,7 @@ public class BasePointDto {
     private long z;
 
     /**
-     * Nomenclature of a 1:100 000 scale map sheet
+     * Nomenclature of a 1:100 000 scale map sheet or project name
      */
     private String sheet;
 

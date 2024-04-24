@@ -1,12 +1,15 @@
 package ru.geekbrains.geocatalog.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.geekbrains.geocatalog.dto.AreaDto;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.mapper.BasePointMapper;
+import ru.geekbrains.geocatalog.mapper.BasePointMapperImpl;
 import ru.geekbrains.geocatalog.model.BasePoint;
 import ru.geekbrains.geocatalog.repository.BasePointRepository;
 
@@ -14,14 +17,33 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
-public class BasePointServiceDefault implements BasePointService{
+public class BasePointServiceImpl implements BasePointService{
     private static final String NOT_FOUND_POINT_MESSAGE = "Couldn't find the point with the ";
 
     private final BasePointRepository basePointRepository;
+    private final BasePointMapper basePointMapper;
 
     @EventListener(ContextRefreshedEvent.class)
     public void onCreatedDatabase() {
+//        Random random = new Random();
+//        for (int i = 0; i < 10; i++) {
+//        basePointRepository.save(new BasePoint(
+//                "basePoint_" + (i + 1),
+//                random.nextInt(1000),
+//                random.nextInt(1000),
+//                random.nextInt(100),
+//                "Empty",
+//                "Empty",
+//                "Empty"
+//                ));
+//
+//        }
+
+
+
+
         basePointRepository.save(new BasePoint(
                 "Утренний",
                 5501650050L,
@@ -94,7 +116,7 @@ public class BasePointServiceDefault implements BasePointService{
      */
     @Override
     public List<BasePointDto> getAll() {
-        return BasePointMapper.toListBasePointDto(basePointRepository.findAll());
+        return basePointMapper.toListBasePointDto(basePointRepository.findAll());
     }
 
     /**
@@ -106,26 +128,52 @@ public class BasePointServiceDefault implements BasePointService{
     public BasePointDto getById(long id) {
         BasePoint basePoint = basePointRepository.findById(id).orElse(null);
         if (basePoint != null) {
-            return BasePointMapper.toBasePointDto(basePoint);
+            return basePointMapper.toBasePointDto(basePoint);
         } else {
             throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "id = " + id);
         }
     }
 
     /**
-     * Gets base point by name
+     * Finds base points by name
      * @param name String name
-     * @return BasePointDto
+     * @return list of BasePointDto instance
      */
     @Override
     public List<BasePointDto> getByName(String name) {
-        List<BasePoint> basePoints = basePointRepository.findAll()
-                .stream()
-                .filter(basePoint -> basePoint.getName().equals(name)).toList();
+        List<BasePoint> basePoints = basePointRepository.findByName(name);
         if (basePoints.isEmpty()) {
             throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "name = " + name);
         }
-        return BasePointMapper.toListBasePointDto(basePoints);
+        return basePointMapper.toListBasePointDto(basePoints);
+    }
+
+    @Override
+    public List<BasePointDto> getBySheet(String sheet) {
+        List<BasePoint> basePoints = basePointRepository.findBySheet(sheet);
+        if (basePoints.isEmpty()) {
+            throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "sheet = " + sheet);
+        }
+
+        return basePointMapper.toListBasePointDto(basePoints);
+    }
+
+
+    @Override
+    public List<BasePointDto> getByArea(AreaDto areaDto) {
+        long xNorthEast = areaDto.getX() + areaDto.getAreaHeight();
+//        log.info("XSouthWest=" + areaDto.getX() + "   xNorthEast=" + xNorthEast);
+        long yNorthEast = areaDto.getY() + areaDto.getAreaWidth();
+//        log.info("YSouthWest=" + areaDto.getY() + "  yNotrhEast=" + yNorthEast);
+        List<BasePoint> basePoints = basePointRepository
+                .findByArea(areaDto.getX(),
+                        areaDto.getY(),
+                        xNorthEast,
+                        yNorthEast);
+        if (basePoints.isEmpty()) {
+            throw new NoSuchElementException("No points were found inside the specified area");
+        }
+        return basePointMapper.toListBasePointDto(basePoints);
     }
 
     /**
@@ -136,8 +184,8 @@ public class BasePointServiceDefault implements BasePointService{
     @Override
     @Transactional
     public BasePointDto createBasePoint(BasePointDto basePointDto) {
-        BasePoint basePoint = BasePointMapper.toBasePoint(basePointDto);
-        return BasePointMapper.toBasePointDto(basePointRepository.saveAndFlush(basePoint));
+        BasePoint basePoint = basePointMapper.toBasePoint(basePointDto);
+        return basePointMapper.toBasePointDto(basePointRepository.saveAndFlush(basePoint));
     }
 
     /**
@@ -153,7 +201,7 @@ public class BasePointServiceDefault implements BasePointService{
             throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "id = " + id);
         }
         basePointRepository.deleteById(id);
-        return BasePointMapper.toBasePointDto(basePoint);
+        return basePointMapper.toBasePointDto(basePoint);
     }
 
 
@@ -171,7 +219,7 @@ public class BasePointServiceDefault implements BasePointService{
         basePoint.setSheet(basePointDto.getSheet());
         basePoint.setAccuracyClass(basePointDto.getAccuracyClass());
 
-        return BasePointMapper.toBasePointDto(basePointRepository.saveAndFlush(basePoint));
+        return basePointMapper.toBasePointDto(basePointRepository.saveAndFlush(basePoint));
     }
 
 }

@@ -1,16 +1,19 @@
 package ru.geekbrains.geocatalog.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import ru.geekbrains.geocatalog.dto.AreaDto;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.service.BasePointService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Slf4j
 @RestController
 @RequestMapping("point")
 @RequiredArgsConstructor
@@ -56,6 +59,20 @@ public class BasePointController {
     }
 
     /**
+     * Gets base point by sheet
+     * @param sheet The sheet of the desired point
+     * @return List of BasePointDto instance
+     */
+    @GetMapping("sheet/{sheet}")
+    public ResponseEntity<List<BasePointDto>> getBasePointBySheet(@PathVariable String sheet) {
+        try {
+            return ResponseEntity.ok().body(basePointService.getBySheet(sheet));
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    /**
      * Removes base point by id
      * @param id point id
      * @return Removed base point
@@ -77,6 +94,20 @@ public class BasePointController {
     @PostMapping
     public ResponseEntity<BasePointDto> createBasePoint(@RequestBody BasePointDto basePointDto) {
         return new ResponseEntity<>(basePointService.createBasePoint(basePointDto),HttpStatus.CREATED);
+    }
+
+    /**
+     * Gets list of base points inside the specified area
+     * @param areaDto AreaDto instance
+     * @return List of BasePointDto instance
+     */
+    @PostMapping("area")
+    public ResponseEntity<List<BasePointDto>> getByArea(@RequestBody AreaDto areaDto) {
+        try {
+            return ResponseEntity.ok().body(basePointService.getByArea(areaDto));
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
     /**

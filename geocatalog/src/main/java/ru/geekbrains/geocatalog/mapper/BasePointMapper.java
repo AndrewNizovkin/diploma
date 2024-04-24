@@ -5,65 +5,34 @@ import ru.geekbrains.geocatalog.model.BasePoint;
 
 import java.util.List;
 
-public class BasePointMapper {
+public interface BasePointMapper {
 
     /**
      * Converts BasePointDto instance to BasePoint instance
      * @param basePointDto BasePointDto instance
      * @return BasePoint instance
      */
-    public static BasePoint toBasePoint(BasePointDto basePointDto) {
-
-        BasePoint basePoint = new BasePoint();
-
-        basePoint.setName(basePointDto.getName());
-        basePoint.setX(basePointDto.getX());
-        basePoint.setY(basePointDto.getY());
-        basePoint.setZ(basePointDto.getZ());
-        basePoint.setSheet(basePointDto.getSheet());
-        basePoint.setAccuracyClass(basePointDto.getAccuracyClass());
-        basePoint.setCoordinateSystem(basePointDto.getCoordinateSystem());
-
-        return basePoint;
-    }
+    BasePoint toBasePoint(BasePointDto basePointDto);
 
     /**
      * Converts BasePoint instance to BasePointDto instance
      * @param basePoint BasePointDto instance
      * @return BasePointDto instance
      */
-    public static BasePointDto toBasePointDto(BasePoint basePoint) {
-
-        BasePointDto basePointDto = new BasePointDto();
-
-        basePointDto.setId(basePoint.getId());
-        basePointDto.setName(basePoint.getName());
-        basePointDto.setX(basePoint.getX());
-        basePointDto.setY(basePoint.getY());
-        basePointDto.setZ(basePoint.getZ());
-        basePointDto.setSheet(basePoint.getSheet());
-        basePointDto.setAccuracyClass(basePoint.getAccuracyClass());
-        basePointDto.setCoordinateSystem(basePoint.getCoordinateSystem());
-
-        return basePointDto;
-    }
+    BasePointDto toBasePointDto(BasePoint basePoint);
 
     /**
      * Converts BasePoint instance list to BasePointDto instance list
      * @param basePoints BasePointDto instance list
      * @return BasePointDto instance list
      */
-    public static List<BasePointDto> toListBasePointDto(List<BasePoint> basePoints) {
-        return basePoints.stream().map(BasePointMapper::toBasePointDto).toList();
-    }
+    List<BasePointDto> toListBasePointDto(List<BasePoint> basePoints);
 
     /**
      * Converts BasePointDto instance list to BasePoint instance list
      * @param basePointsDto BasePointDto instance list
      * @return BasePoint instance list
      */
-    public static List<BasePoint> toListBasePoint(List<BasePointDto> basePointsDto) {
-        return basePointsDto.stream().map(BasePointMapper::toBasePoint).toList();
-    }
+    List<BasePoint> toListBasePoint(List<BasePointDto> basePointsDto);
 
-}
+    }
