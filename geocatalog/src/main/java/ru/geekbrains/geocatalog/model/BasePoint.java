@@ -47,7 +47,7 @@ public class BasePoint {
     /**
      * The accuracy class of the point
      */
-    @Column(name = "type")
+    @Column(name = "accuracy_class")
     private String accuracyClass;
 
     /**
