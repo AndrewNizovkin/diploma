@@ -1,8 +1,10 @@
 package ru.geekbrains.geocatalog.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class BasePointDto {
 
     private long id;
