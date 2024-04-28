@@ -143,7 +143,7 @@ public class BasePointServiceImpl implements BasePointService{
     public List<BasePointDto> getByName(String name) {
         List<BasePoint> basePoints = basePointRepository.findByName(name);
         if (basePoints.isEmpty()) {
-            throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "name = " + name);
+            throw new RuntimeException(NOT_FOUND_POINT_MESSAGE + "name = " + name);
         }
         return basePointMapper.toListBasePointDto(basePoints);
     }
@@ -152,7 +152,7 @@ public class BasePointServiceImpl implements BasePointService{
     public List<BasePointDto> getBySheet(String sheet) {
         List<BasePoint> basePoints = basePointRepository.findBySheet(sheet);
         if (basePoints.isEmpty()) {
-            throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "sheet = " + sheet);
+            throw new RuntimeException(NOT_FOUND_POINT_MESSAGE + "sheet = " + sheet);
         }
 
         return basePointMapper.toListBasePointDto(basePoints);
@@ -162,16 +162,14 @@ public class BasePointServiceImpl implements BasePointService{
     @Override
     public List<BasePointDto> getByArea(AreaDto areaDto) {
         long xNorthEast = areaDto.getX() + areaDto.getAreaHeight();
-//        log.info("XSouthWest=" + areaDto.getX() + "   xNorthEast=" + xNorthEast);
         long yNorthEast = areaDto.getY() + areaDto.getAreaWidth();
-//        log.info("YSouthWest=" + areaDto.getY() + "  yNotrhEast=" + yNorthEast);
         List<BasePoint> basePoints = basePointRepository
                 .findByArea(areaDto.getX(),
                         areaDto.getY(),
                         xNorthEast,
                         yNorthEast);
         if (basePoints.isEmpty()) {
-            throw new NoSuchElementException("No points were found inside the specified area");
+            throw new RuntimeException("No points were found inside the specified area");
         }
         return basePointMapper.toListBasePointDto(basePoints);
     }
@@ -198,7 +196,7 @@ public class BasePointServiceImpl implements BasePointService{
     public BasePointDto removeById(long id) {
         BasePoint basePoint = basePointRepository.findById(id).orElse(null);
         if (basePoint == null) {
-            throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "id = " + id);
+            throw new RuntimeException(NOT_FOUND_POINT_MESSAGE + "id = " + id);
         }
         basePointRepository.deleteById(id);
         return basePointMapper.toBasePointDto(basePoint);
@@ -210,7 +208,7 @@ public class BasePointServiceImpl implements BasePointService{
     public BasePointDto updatePoint(long id, BasePointDto basePointDto) {
         BasePoint basePoint = basePointRepository.findById(id).orElse(null);
         if (basePoint == null) {
-            throw new NoSuchElementException(NOT_FOUND_POINT_MESSAGE + "id = " + id);
+            throw new RuntimeException(NOT_FOUND_POINT_MESSAGE + "id = " + id);
         }
         basePoint.setName(basePointDto.getName());
         basePoint.setX(basePointDto.getX());

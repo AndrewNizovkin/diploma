@@ -1,12 +1,14 @@
 package ru.geekbrains.geocatalog.mapper;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.model.BasePoint;
+import ru.geekbrains.geocatalog.service.PointComparator;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,9 @@ class BasePointMapperImplTest {
     @Autowired
     BasePointMapper basePointMapper;
 
+    @Autowired
+    PointComparator pointComparator;
+
     @Test
     void toBasePointTest() {
         BasePointDto expectBasePointDto = new BasePointDto();
@@ -34,15 +39,8 @@ class BasePointMapperImplTest {
 
         BasePoint actualBasePoint = basePointMapper.toBasePoint(expectBasePointDto);
 
-        Assertions.assertNotNull(actualBasePoint);
-        Assertions.assertEquals(expectBasePointDto.getName(), actualBasePoint.getName());
-        Assertions.assertEquals(expectBasePointDto.getX(), actualBasePoint.getX());
-        Assertions.assertEquals(expectBasePointDto.getY(), actualBasePoint.getY());
-        Assertions.assertEquals(expectBasePointDto.getZ(), actualBasePoint.getZ());
-        Assertions.assertEquals(expectBasePointDto.getSheet(), actualBasePoint.getSheet());
-        Assertions.assertEquals(expectBasePointDto.getAccuracyClass(), actualBasePoint.getAccuracyClass());
-        Assertions.assertEquals(expectBasePointDto.getCoordinateSystem(), actualBasePoint.getCoordinateSystem());
-
+        assertNotNull(actualBasePoint);
+        assertTrue(pointComparator.compareBasePointDto(expectBasePointDto, actualBasePoint));
     }
 
     @Test
@@ -59,39 +57,33 @@ class BasePointMapperImplTest {
 
         BasePointDto actualBasePointDto = basePointMapper.toBasePointDto(expectBasePoint);
 
-        Assertions.assertNotNull(actualBasePointDto);
-        Assertions.assertEquals(expectBasePoint.getId(), actualBasePointDto.getId());
-        Assertions.assertEquals(expectBasePoint.getName(), actualBasePointDto.getName());
-        Assertions.assertEquals(expectBasePoint.getX(), actualBasePointDto.getX());
-        Assertions.assertEquals(expectBasePoint.getY(), actualBasePointDto.getY());
-        Assertions.assertEquals(expectBasePoint.getZ(), actualBasePointDto.getZ());
-        Assertions.assertEquals(expectBasePoint.getSheet(), actualBasePointDto.getSheet());
-        Assertions.assertEquals(expectBasePoint.getAccuracyClass(), actualBasePointDto.getAccuracyClass());
-        Assertions.assertEquals(expectBasePoint.getCoordinateSystem(), actualBasePointDto.getCoordinateSystem());
+        assertNotNull(actualBasePointDto);
+        assertTrue(pointComparator.compareBasePoint(expectBasePoint, actualBasePointDto));
     }
 
     @Test
     void toListBasePointDtoTest() {
-//        List<BasePointDto> expectBasePointDtoList = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            BasePointDto basePointDto = new BasePointDto();
-//            basePointDto.setName("Point_N_" + random.nextInt(100));
-//            basePointDto.setX(random.nextLong(1000000000));
-//            basePointDto.setY(random.nextLong(1000000000));
-//            basePointDto.setZ(random.nextLong(1000000));
-//            basePointDto.setSheet("L-37-" + random.nextInt(144));
-//            basePointDto.setAccuracyClass(random.nextInt(4) + "кл");
-//            basePointDto.setCoordinateSystem(String.valueOf(random.nextInt(10000)));
-//            expectBasePointDtoList.add(basePointDto);
-//        }
-//
-//        List<BasePoint> actualBasePointList = basePointMapper.toListBasePoint(expectBasePointDtoList);
-//
-//        Assertions.assertNotNull(actualBasePointList);
-//        Assertions.assertEquals(expectBasePointDtoList.size(), actualBasePointList.size());
-//        for (int i = 0; i < expectBasePointDtoList.size(); i++) {
-//            Assertions.assertEquals();
-//        }
+        List<BasePoint> expectBasePointList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            expectBasePointList.add(new BasePoint(
+                    "Point_N_" + random.nextInt(100),
+                    random.nextLong(1000000000),
+                    random.nextLong(1000000000),
+                    random.nextLong(1000000),
+                    "L-37-" + random.nextInt(144),
+                    random.nextInt(4) + "кл",
+                    String.valueOf(random.nextInt(10000))
+            ));
+        }
+
+        List<BasePointDto> actualBasePointDtoList = basePointMapper.toListBasePointDto(expectBasePointList);
+
+        assertNotNull(actualBasePointDtoList);
+        assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
+        for (int i = 0; i < expectBasePointList.size(); i++) {
+            pointComparator.compareBasePoint(expectBasePointList.get(i), actualBasePointDtoList.get(i));
+        }
+
     }
 
     @Test
@@ -111,16 +103,10 @@ class BasePointMapperImplTest {
 
         List<BasePoint> actualBasePointList = basePointMapper.toListBasePoint(expectBasePointDtoList);
 
-        Assertions.assertNotNull(actualBasePointList);
-        Assertions.assertEquals(expectBasePointDtoList.size(), actualBasePointList.size());
+        assertNotNull(actualBasePointList);
+        assertEquals(expectBasePointDtoList.size(), actualBasePointList.size());
         for (int i = 0; i < expectBasePointDtoList.size(); i++) {
-            Assertions.assertEquals(expectBasePointDtoList.get(i).getName(), actualBasePointList.get(i).getName());
-            Assertions.assertEquals(expectBasePointDtoList.get(i).getX(), actualBasePointList.get(i).getX());
-            Assertions.assertEquals(expectBasePointDtoList.get(i).getY(), actualBasePointList.get(i).getY());
-            Assertions.assertEquals(expectBasePointDtoList.get(i).getZ(), actualBasePointList.get(i).getZ());
-            Assertions.assertEquals(expectBasePointDtoList.get(i).getSheet(), actualBasePointList.get(i).getSheet());
-            Assertions.assertEquals(expectBasePointDtoList.get(i).getAccuracyClass(), actualBasePointList.get(i).getAccuracyClass());
-            Assertions.assertEquals(expectBasePointDtoList.get(i).getCoordinateSystem(), actualBasePointList.get(i).getCoordinateSystem());
+            pointComparator.compareBasePointDto(expectBasePointDtoList.get(i), actualBasePointList.get(i));
         }
 
     }

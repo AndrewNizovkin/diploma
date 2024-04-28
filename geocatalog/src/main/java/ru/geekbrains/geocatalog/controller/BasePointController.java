@@ -39,7 +39,7 @@ public class BasePointController {
     public ResponseEntity<BasePointDto> getBasePointById(@PathVariable long id) {
         try {
             return ResponseEntity.ok().body(basePointService.getById(id));
-        } catch (NoSuchElementException e) {
+        } catch (RuntimeException e) {
             throw  new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
@@ -53,7 +53,7 @@ public class BasePointController {
     public ResponseEntity<List<BasePointDto>> getBasePointByName(@PathVariable String name) {
         try {
             return ResponseEntity.ok().body(basePointService.getByName(name));
-        } catch (NoSuchElementException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
@@ -67,7 +67,7 @@ public class BasePointController {
     public ResponseEntity<List<BasePointDto>> getBasePointBySheet(@PathVariable String sheet) {
         try {
             return ResponseEntity.ok().body(basePointService.getBySheet(sheet));
-        } catch (NoSuchElementException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
@@ -105,7 +105,7 @@ public class BasePointController {
     public ResponseEntity<List<BasePointDto>> getByArea(@RequestBody AreaDto areaDto) {
         try {
             return ResponseEntity.ok().body(basePointService.getByArea(areaDto));
-        } catch (NoSuchElementException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
@@ -120,7 +120,7 @@ public class BasePointController {
     public ResponseEntity<BasePointDto> updateBasePoint(@PathVariable long id, @RequestBody BasePointDto basePointDto) {
         try {
             return ResponseEntity.ok().body(basePointService.updatePoint(id, basePointDto));
-        } catch (NoSuchElementException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
