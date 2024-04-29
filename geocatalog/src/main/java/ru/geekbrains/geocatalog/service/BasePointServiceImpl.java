@@ -216,6 +216,7 @@ public class BasePointServiceImpl implements BasePointService{
         basePoint.setZ(basePointDto.getZ());
         basePoint.setSheet(basePointDto.getSheet());
         basePoint.setAccuracyClass(basePointDto.getAccuracyClass());
+        basePoint.setCoordinateSystem(basePointDto.getCoordinateSystem());
 
         return basePointMapper.toBasePointDto(basePointRepository.saveAndFlush(basePoint));
     }

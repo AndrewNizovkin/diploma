@@ -9,6 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import ru.geekbrains.geocatalog.dto.AreaDto;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.mapper.BasePointMapper;
+import ru.geekbrains.geocatalog.mapper.BasePointMapperImpl;
 import ru.geekbrains.geocatalog.model.BasePoint;
 import ru.geekbrains.geocatalog.repository.BasePointRepository;
 
@@ -16,8 +17,12 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ActiveProfiles("test")
-@SpringBootTest
+@SpringBootTest(classes = {
+        BasePointMapperImpl.class,
+        BasePointServiceImpl.class,
+        PointComparator.class,
+
+})
 class BasePointServiceTest {
 
     @Autowired
@@ -43,7 +48,7 @@ class BasePointServiceTest {
         assertNotNull(actualBasePointList);
         assertEquals(expectBasePointList.size(), actualBasePointList.size());
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePoint(expectBasePointList.get(i), actualBasePointList.get(i)));
+            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointList.get(i)));
         }
     }
 
@@ -64,7 +69,7 @@ class BasePointServiceTest {
         BasePointDto actualBasePointdto = basePointService.getById(1);
 
         assertNotNull(actualBasePointdto);
-        assertTrue(pointComparator.compareBasePoint(expectBasePoint, actualBasePointdto));
+        assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePoint, actualBasePointdto));
     }
 
     @Test
@@ -85,7 +90,7 @@ class BasePointServiceTest {
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePoint(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
+            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
         }
     }
 
@@ -107,7 +112,7 @@ class BasePointServiceTest {
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePoint(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
+            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
         }
     }
 
@@ -137,7 +142,7 @@ class BasePointServiceTest {
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePoint(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
+            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
         }
     }
 
@@ -172,7 +177,7 @@ class BasePointServiceTest {
         BasePointDto actualBasePointDto = basePointService.createBasePoint(expectBasePointDto);
 
         assertNotNull(actualBasePointDto);
-        assertTrue(pointComparator.compareBasePointDto(expectBasePointDto, actualBasePointDto));
+        assertTrue(pointComparator.compareBasePointDtoBasePointDto(expectBasePointDto, actualBasePointDto));
     }
 
     @Test
@@ -191,7 +196,7 @@ class BasePointServiceTest {
         BasePointDto actualBasePointDto = basePointService.removeById(expectBasePoint.getId());
 
         assertNotNull(actualBasePointDto);
-        assertTrue(pointComparator.compareBasePoint(expectBasePoint, actualBasePointDto));
+        assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePoint, actualBasePointDto));
     }
 
     @Test

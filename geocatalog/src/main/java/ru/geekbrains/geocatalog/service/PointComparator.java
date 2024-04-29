@@ -1,6 +1,5 @@
 package ru.geekbrains.geocatalog.service;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.model.BasePoint;
@@ -14,7 +13,7 @@ public class PointComparator {
      * @param basePointDto BasePointDto instance
      * @return boolean result
      */
-    public boolean compareBasePoint(BasePoint basePoint, BasePointDto basePointDto) {
+    public boolean compareBasePointBasePointDTO(BasePoint basePoint, BasePointDto basePointDto) {
         return basePoint.getId() == basePointDto.getId() &&
                 basePoint.getName().equals(basePointDto.getName()) &&
                 basePoint.getX() == basePointDto.getX() &&
@@ -31,7 +30,7 @@ public class PointComparator {
      * @param basePoint BasePoint instance
      * @return boolean result
      */
-    public boolean compareBasePointDto(BasePointDto basePointDto, BasePoint basePoint) {
+    public boolean compareBasePointDtoBasePoint(BasePointDto basePointDto, BasePoint basePoint) {
         return basePointDto.getName().equals(basePoint.getName()) &&
                 basePointDto.getX() == basePoint.getX() &&
                 basePointDto.getY() == basePoint.getY() &&
@@ -47,7 +46,7 @@ public class PointComparator {
      * @param actualPoint BasePointDto instance
      * @return boolean result
      */
-    public boolean compareBasePointDto(BasePointDto expectPoint, BasePointDto actualPoint) {
+    public boolean compareBasePointDtoBasePointDto(BasePointDto expectPoint, BasePointDto actualPoint) {
         return expectPoint.getName().equals(actualPoint.getName()) &&
                 expectPoint.getX() == actualPoint.getX() &&
                 expectPoint.getY() == actualPoint.getY() &&

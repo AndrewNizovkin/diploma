@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@ActiveProfiles("test")
+@SpringBootTest(classes = {
+        BasePointMapperImpl.class,
+        PointComparator.class
+})
 class BasePointMapperImplTest {
 
     Random random = new Random();
@@ -40,7 +42,7 @@ class BasePointMapperImplTest {
         BasePoint actualBasePoint = basePointMapper.toBasePoint(expectBasePointDto);
 
         assertNotNull(actualBasePoint);
-        assertTrue(pointComparator.compareBasePointDto(expectBasePointDto, actualBasePoint));
+        assertTrue(pointComparator.compareBasePointDtoBasePoint(expectBasePointDto, actualBasePoint));
     }
 
     @Test
@@ -58,7 +60,7 @@ class BasePointMapperImplTest {
         BasePointDto actualBasePointDto = basePointMapper.toBasePointDto(expectBasePoint);
 
         assertNotNull(actualBasePointDto);
-        assertTrue(pointComparator.compareBasePoint(expectBasePoint, actualBasePointDto));
+        assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePoint, actualBasePointDto));
     }
 
     @Test
@@ -81,7 +83,7 @@ class BasePointMapperImplTest {
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            pointComparator.compareBasePoint(expectBasePointList.get(i), actualBasePointDtoList.get(i));
+            pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i));
         }
 
     }
@@ -106,7 +108,7 @@ class BasePointMapperImplTest {
         assertNotNull(actualBasePointList);
         assertEquals(expectBasePointDtoList.size(), actualBasePointList.size());
         for (int i = 0; i < expectBasePointDtoList.size(); i++) {
-            pointComparator.compareBasePointDto(expectBasePointDtoList.get(i), actualBasePointList.get(i));
+            pointComparator.compareBasePointDtoBasePoint(expectBasePointDtoList.get(i), actualBasePointList.get(i));
         }
 
     }
