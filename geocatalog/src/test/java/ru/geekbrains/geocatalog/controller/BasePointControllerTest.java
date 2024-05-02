@@ -59,8 +59,10 @@ class BasePointControllerTest {
 
             assertNotNull(responseBody);
             assertEquals(expectedBasePointList.size(), responseBody.size());
+            boolean result;
             for (int i = 0; i < expectedBasePointList.size(); i++) {
-                assertTrue(pointComparator.compareBasePointBasePointDTO(expectedBasePointList.get(i), responseBody.get(i)));
+                result = pointComparator.compareBasePointBasePointDTO(expectedBasePointList.get(i), responseBody.get(i));
+                assertTrue(result);
             }
     }
 
@@ -84,7 +86,8 @@ class BasePointControllerTest {
                 .getResponseBody();
 
         assertNotNull(responseBody);
-        assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePoint, responseBody));
+        boolean result = pointComparator.compareBasePointBasePointDTO(expectBasePoint, responseBody);
+        assertTrue(result);
     }
 
     @Test
@@ -112,10 +115,12 @@ class BasePointControllerTest {
 
         assertNotNull(responseBody);
         assertEquals(expectedBasePointList.size(), responseBody.size());
+        boolean result;
         for (int i = 0; i < expectedBasePointList.size(); i++) {
-            assertTrue(pointComparator
+            result = pointComparator
                     .compareBasePointBasePointDTO(expectedBasePointList.get(i),
-                            responseBody.get(i)));
+                            responseBody.get(i));
+            assertTrue(result);
         }
     }
 
@@ -144,8 +149,10 @@ class BasePointControllerTest {
 
         assertNotNull(responseBody);
         assertEquals(expectedBasePointList.size(), responseBody.size());
+        boolean result;
         for (int i = 0; i < expectedBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePointBasePointDTO(expectedBasePointList.get(i), responseBody.get(i)));
+            result = pointComparator.compareBasePointBasePointDTO(expectedBasePointList.get(i), responseBody.get(i));
+            assertTrue(result);
         }
     }
 
@@ -181,9 +188,10 @@ class BasePointControllerTest {
                 .getResponseBody();
 
         assertNotNull(responseBody);
-        assertTrue(pointComparator.compareBasePointBasePointDTO(
+        boolean result = pointComparator.compareBasePointBasePointDTO(
                 expectBasePoint, responseBody
-        ));
+        );
+        assertTrue(result);
 
     }
 
@@ -209,9 +217,9 @@ class BasePointControllerTest {
                 .getResponseBody();
 
         assertNotNull(responseBody);
-        assertTrue(pointComparator.compareBasePointDtoBasePointDto(
-                expectBasePointDto, responseBody
-        ));
+        boolean result = pointComparator.compareBasePointDtoBasePointDto(
+                expectBasePointDto, responseBody);
+        assertTrue(result);
     }
 
     @Test
@@ -247,11 +255,12 @@ class BasePointControllerTest {
 
             assertNotNull(responseBody);
             assertEquals(expectedBasePointList.size(), responseBody.size());
+            boolean result;
             for (int j = 0; j < expectedBasePointList.size(); j++) {
-                assertTrue(pointComparator.compareBasePointBasePointDTO(
+                result = pointComparator.compareBasePointBasePointDTO(
                         expectedBasePointList.get(i),
-                        responseBody.get(i)
-                ));
+                        responseBody.get(i));
+                assertTrue(result);
             }
 
         }
@@ -289,9 +298,9 @@ class BasePointControllerTest {
                 .getResponseBody();
 
         assertNotNull(responseBody);
-        assertTrue(pointComparator.compareBasePointDtoBasePointDto(
-                expectBasePointDto, responseBody
-        ));
+        boolean result = pointComparator.compareBasePointDtoBasePointDto(
+                expectBasePointDto, responseBody);
+        assertTrue(result);
     }
 
     /**

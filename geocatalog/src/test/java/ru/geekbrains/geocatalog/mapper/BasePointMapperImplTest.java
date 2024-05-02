@@ -83,7 +83,9 @@ class BasePointMapperImplTest {
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i));
+            boolean result = pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i),
+                    actualBasePointDtoList.get(i));
+            assertTrue(result);
         }
 
     }
@@ -108,7 +110,8 @@ class BasePointMapperImplTest {
         assertNotNull(actualBasePointList);
         assertEquals(expectBasePointDtoList.size(), actualBasePointList.size());
         for (int i = 0; i < expectBasePointDtoList.size(); i++) {
-            pointComparator.compareBasePointDtoBasePoint(expectBasePointDtoList.get(i), actualBasePointList.get(i));
+            boolean result = pointComparator.compareBasePointDtoBasePoint(expectBasePointDtoList.get(i), actualBasePointList.get(i));
+            assertTrue(result);
         }
 
     }

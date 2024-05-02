@@ -5,7 +5,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
 import ru.geekbrains.geocatalog.dto.AreaDto;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.mapper.BasePointMapper;
@@ -47,8 +46,11 @@ class BasePointServiceTest {
 
         assertNotNull(actualBasePointList);
         assertEquals(expectBasePointList.size(), actualBasePointList.size());
+        boolean result;
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointList.get(i)));
+            result = pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointList.get(i));
+            assertTrue(result);
+
         }
     }
 
@@ -69,7 +71,8 @@ class BasePointServiceTest {
         BasePointDto actualBasePointdto = basePointService.getById(1);
 
         assertNotNull(actualBasePointdto);
-        assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePoint, actualBasePointdto));
+        boolean result = pointComparator.compareBasePointBasePointDTO(expectBasePoint, actualBasePointdto);
+        assertTrue(result);
     }
 
     @Test
@@ -89,8 +92,10 @@ class BasePointServiceTest {
 
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
+        boolean result;
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
+            result = pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i));
+            assertTrue(result);
         }
     }
 
@@ -111,8 +116,10 @@ class BasePointServiceTest {
 
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
+        boolean result;
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
+            result = pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i));
+            assertTrue(result);
         }
     }
 
@@ -141,8 +148,10 @@ class BasePointServiceTest {
 
         assertNotNull(actualBasePointDtoList);
         assertEquals(expectBasePointList.size(), actualBasePointDtoList.size());
+        boolean result;
         for (int i = 0; i < expectBasePointList.size(); i++) {
-            assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i)));
+            result = pointComparator.compareBasePointBasePointDTO(expectBasePointList.get(i), actualBasePointDtoList.get(i));
+            assertTrue(result);
         }
     }
 
@@ -177,7 +186,8 @@ class BasePointServiceTest {
         BasePointDto actualBasePointDto = basePointService.createBasePoint(expectBasePointDto);
 
         assertNotNull(actualBasePointDto);
-        assertTrue(pointComparator.compareBasePointDtoBasePointDto(expectBasePointDto, actualBasePointDto));
+        boolean result = pointComparator.compareBasePointDtoBasePointDto(expectBasePointDto, actualBasePointDto);
+        assertTrue(result);
     }
 
     @Test
@@ -196,7 +206,8 @@ class BasePointServiceTest {
         BasePointDto actualBasePointDto = basePointService.removeById(expectBasePoint.getId());
 
         assertNotNull(actualBasePointDto);
-        assertTrue(pointComparator.compareBasePointBasePointDTO(expectBasePoint, actualBasePointDto));
+        boolean result = pointComparator.compareBasePointBasePointDTO(expectBasePoint, actualBasePointDto);
+        assertTrue(result);
     }
 
     @Test
