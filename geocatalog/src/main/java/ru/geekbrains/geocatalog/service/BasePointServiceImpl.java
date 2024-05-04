@@ -1,6 +1,5 @@
 package ru.geekbrains.geocatalog.service;
 
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -10,13 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.geekbrains.geocatalog.dto.AreaDto;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.mapper.BasePointMapper;
-import ru.geekbrains.geocatalog.mapper.BasePointMapperImpl;
 import ru.geekbrains.geocatalog.model.BasePoint;
 import ru.geekbrains.geocatalog.repository.BasePointRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * This class implements the methods of the BasePointService interface,
+ * representing the business logic of the project
+ * @author Nizovkin A.V.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor

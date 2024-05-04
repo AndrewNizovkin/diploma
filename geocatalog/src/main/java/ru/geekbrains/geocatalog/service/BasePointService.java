@@ -1,12 +1,14 @@
 package ru.geekbrains.geocatalog.service;
 
-import org.springframework.transaction.annotation.Transactional;
 import ru.geekbrains.geocatalog.dto.AreaDto;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
-import ru.geekbrains.geocatalog.model.BasePoint;
 
 import java.util.List;
 
+/**
+ * This interface defines the main methods of the business logic of the project
+ * @author Nizovkin A.V.
+ */
 public interface BasePointService {
 
     /**

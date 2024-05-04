@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.geekbrains.geocatalog"},{"l":"ru.geekbrains.geocatalog.controller"},{"l":"ru.geekbrains.geocatalog.dto"},{"l":"ru.geekbrains.geocatalog.mapper"},{"l":"ru.geekbrains.geocatalog.model"},{"l":"ru.geekbrains.geocatalog.repository"},{"l":"ru.geekbrains.geocatalog.service"}];updateSearchResults();

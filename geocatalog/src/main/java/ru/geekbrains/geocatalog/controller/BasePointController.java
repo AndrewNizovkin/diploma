@@ -16,6 +16,10 @@ import ru.geekbrains.geocatalog.service.BasePointService;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * This class provides methods that handle incoming HTTP requests
+ * @author Nizovkin A.V.
+ */
 @Slf4j
 @RestController
 @RequestMapping("point")

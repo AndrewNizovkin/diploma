@@ -1,0 +1,15 @@
+server:
+  error:
+    include-message: ALWAYS
+spring:
+  application:
+    name: geocatalog
+  datasource:
+    url: jdbc:postgresql://localhost:5432/basepointsdb
+    username: andrew
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true

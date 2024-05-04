@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class provides the basic entity of the project
+ * @author Nizovkin A.V.
+ */
 @Entity
 @Data
 @Table(name = "points")

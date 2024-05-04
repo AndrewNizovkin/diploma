@@ -5,6 +5,11 @@ import ru.geekbrains.geocatalog.model.BasePoint;
 
 import java.util.List;
 
+/**
+ * This interface defines a set of methods for converting between
+ * objects and entities
+ * @author Nizovkin A.V.
+ */
 public interface BasePointMapper {
 
     /**

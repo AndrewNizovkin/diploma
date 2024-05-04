@@ -5,6 +5,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class is used to transfer geodetic point data
+ * between application subsystems.
+ * @author Nizovkin A.V.
+ */
 @Data
 @NoArgsConstructor
 @Schema(name = "Пункт геодезической сети")

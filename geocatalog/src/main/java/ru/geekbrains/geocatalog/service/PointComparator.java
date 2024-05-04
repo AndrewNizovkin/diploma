@@ -4,6 +4,10 @@ import org.springframework.stereotype.Component;
 import ru.geekbrains.geocatalog.dto.BasePointDto;
 import ru.geekbrains.geocatalog.model.BasePoint;
 
+/**
+ * This class provides methods for comparing the fields of the Dto and Entity objects
+ * @author Nizovkin A.V.
+ */
 @Component
 public class PointComparator {
 

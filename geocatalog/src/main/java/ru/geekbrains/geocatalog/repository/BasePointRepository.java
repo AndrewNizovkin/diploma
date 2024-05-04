@@ -7,8 +7,11 @@ import org.springframework.stereotype.Repository;
 import ru.geekbrains.geocatalog.model.BasePoint;
 
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * This interface provides communication between the database and the project classes
+ * @author Nizovkin A.V.
+ */
 @Repository
 public interface BasePointRepository extends JpaRepository<BasePoint, Long> {
 

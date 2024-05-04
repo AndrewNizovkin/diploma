@@ -1,0 +1,7 @@
+ru.geekbrains.geocatalog
+ru.geekbrains.geocatalog.controller
+ru.geekbrains.geocatalog.dto
+ru.geekbrains.geocatalog.mapper
+ru.geekbrains.geocatalog.model
+ru.geekbrains.geocatalog.repository
+ru.geekbrains.geocatalog.service

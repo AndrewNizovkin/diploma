@@ -1,0 +1,11 @@
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/dto/BasePointDto.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/controller/BasePointController.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/service/BasePointService.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/service/BasePointServiceImpl.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/dto/AreaDto.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/GeoCatalogApplication.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/repository/BasePointRepository.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/model/BasePoint.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/service/PointComparator.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/mapper/BasePointMapperImpl.java
+/home/andrew/MyProjects/diploma/geocatalog/src/main/java/ru/geekbrains/geocatalog/mapper/BasePointMapper.java

@@ -6,6 +6,11 @@ import ru.geekbrains.geocatalog.model.BasePoint;
 
 import java.util.List;
 
+/**
+ * This class implements the methods defined in the BasePointMapper interface,
+ * converting Dto and entities
+ * @author Nizovkin A.V.
+ */
 @Component
 public class BasePointMapperImpl implements BasePointMapper{
 
