@@ -14,6 +14,7 @@ import ru.geekbrains.geocatalog.repository.BasePointRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 /**
  * This class implements the methods of the BasePointService interface,
