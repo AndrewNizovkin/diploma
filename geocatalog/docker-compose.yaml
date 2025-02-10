@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:alpine3.19
+    container_name: postgres_container
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: andrew
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: basepointsdb
+    networks:
+      - app-network
+
+  geocatalog:
+    build: ./
+    container_name: geocatalog_container
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
