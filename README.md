@@ -1,5 +1,4 @@
-# Дипломный проект.
-### Разработка web-сервиса для обеспечения топо-геодезических работ.
+ # Geocatalog
 
 Целью настоящего проекта является разработка web-сервиса обеспечивающего хранение и предоставление координат опорных точек для производства топо-геодезических работ.
 
@@ -52,3 +51,11 @@
 [Описание API Swagger ui](https://github.com/AndrewNizovkin/diploma/blob/main/swagger_demo.md)
 
 [JSON Rest Full Api спецификация](https://github.com/AndrewNizovkin/diploma/blob/main/open_api.md)
+
+Для запуска web-сервиса **geocatalog** в контейнере с использованием docker-compose, нужно в файл `Dockerfile` внести актуальный путь к локальной папке проекта `geocatalog`:
+
+```shell
+WORKDIR /Ваш_путь_к_локальной_папке/geocatalog
+```
+
+Перед этим нужно скопировать папку `geocatalog` на локальную машину.
